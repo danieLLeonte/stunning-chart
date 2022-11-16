@@ -8,18 +8,8 @@ import useMeasure from "react-use-measure";
 import styled from "styled-components";
 import { timeFormat } from "d3-time-format";
 import { Group } from "@visx/group";
-import axios from "axios";
 
-let array = [];
-
-const endpoint = 'https://fakerql.goosfraba.ro/graphql';
-
-const graphqlQuery = `query allPosts {
-  allPosts(count: 100) {
-    id
-    createdAt
-  }
-}`;
+import { fetchFromAPI } from "../utils/fetchGraphQL";
 
 const getYValue = (d) => d.posts;
 const getXValue = (d) => d.date;
@@ -61,45 +51,7 @@ const Chart = () => {
   const innerHeight = height - margin;
 
   useEffect(() => {
-    axios({
-      url: endpoint,
-      method: 'post',
-      data: {
-        query: graphqlQuery
-      }
-    }).then((result) => {
-      let posts = {}
-      let postsDate = {}
-
-      result.data.data.allPosts.forEach((element, idx) => {
-        let dateStr = new Date(element.createdAt / 1).toDateString();
-        let dateStrArr = dateStr.split(' ');
-
-        if (dateStrArr[3] === "2019") {
-          // we create key/value pairs of type - key(month): value:=(number of posts)
-          if(!posts[dateStrArr[1]]) {
-            posts[dateStrArr[1]] = 0;
-
-            // we also save the data separately in iso format to use it in the graph
-            postsDate[idx] = new Date(element.createdAt / 1).toISOString();
-          }
-
-          posts[dateStrArr[1]] += 1;
-        }
-      });
-    
-      // we add each key/value pair to the array and save them as a new object
-      for (const [key, value] of Object.entries(posts)) {
-        array.push({date: key, posts: value})
-      }
-
-      // to each object in the array with ["date"] key we assign the date in iso format
-      array.map((element, idx) => element["date"] = Object.entries(postsDate)[idx][1])
-      
-      array = array.sort((a,b) => Date.parse(a.date) - Date.parse(b.date));
-
-      setData(array);
-    });
+    fetchFromAPI().then((data) => setData(data));
   }, [])
 
   const {
