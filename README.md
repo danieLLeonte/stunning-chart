@@ -1,13 +1,24 @@
-## Process
-1. I did a fetch to the GraphQL API using Apollo to see how the data for the posts looks.
-2. I documented myself about VISX and started to implement the front-end with some mockdata.
-3. After seeing that the graph looks good, I fetched the GraphQL API to represent the posts in the graph.
-4. I tested.
-5. What I would do now, is to think about an improvement for the logic in processing data from the API.
+# VISX Chart 📈
 
-## Choices
-- I chose to keep the design simple and clean, and to focus more to represent the data correctly in the graph.
+## General Info
+**TikTik - Video-Sharing Social Media Website. This TikTok Clone Application includes Google Auth, the ability to upload, publish, share, comment on, and like the videos; filtering by categories and advanced search functionalities, profile pages, suggested accounts, custom responsive design, and much more..** 
+<a href="https://chart-37.netlify.app" target="_blank" >👉🎯👈</a>
+VISX Chart - a JavaScript web application that fetches a relevantly-sized list of posts from a mock GraphQL API and displays a chart representing the number of posts created in each month of 2019.
 
-## Challenges
-It was the first time I interacted with GraphQL API and VISX, it was a challenge and I really enjoyed learning.
-In the logic part, I encountered a few difficulties until I found the option to correctly represent the data in the graph, but in the end, I got it right.
+![](./screencast/overview.png)
+***
+
+Technologies:
+- React JS
+- VISX
+- GraphQL API
+- Apollo
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
