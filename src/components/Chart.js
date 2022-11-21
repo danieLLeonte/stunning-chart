@@ -125,6 +125,9 @@ const Chart = () => {
 
           <Group>
             <AxisBottom
+              tickStroke="white"
+              stroke="white"
+              tickClassName="gclass"
               top={innerHeight}
               scale={xScale}
               tickFormat={(date) => timeFormat("%b")(new Date(date))}
@@ -132,7 +135,12 @@ const Chart = () => {
           </Group>
 
           <Group>
-            <AxisLeft left={margin} scale={yScale} />
+            <AxisLeft
+              tickStroke="white"
+              stroke="white"
+              tickClassName="gclass"
+              left={margin}
+              scale={yScale} />
           </Group>
         </svg>
 
